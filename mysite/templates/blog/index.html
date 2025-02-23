@@ -1,0 +1,40 @@
+{% extends 'parent/base.html' %}
+{% load jformat %}
+{% load blog_tags %}
+{% block title %} index {% endblock %}
+{% block content %}
+    <h1>first page</h1>
+    <h2>آمار</h2>
+    <p> تعداد پست ها :{% total_posts %}</p>
+    <p> تعداد کامنت ها :{% total_comments %}</p>
+    <p> زمان آخرین پست :{% time_of_last_post %}</p>
+    <p>{% latest_post %}</p>
+    <h4>محبوب ترین پست ها</h4>
+    {% most_popular_post as m_post %}
+    {% for post in m_post %}
+        <a href="{{ post.get_absolute_url }}">{{ post.title }} with: {{ post.count }} comments</a>
+        <br>
+    {% endfor %}
+    <h4>بیشترین زمان مطالعه</h4>
+        {% most_study_time as most_time %}
+        {% for post in most_time %}
+            <a href="{{ post.get_absolute_url }}">{{ post.title }} with: {{ post.most }} minute </a>
+        {% endfor %}
+    <h4>کمترین زمان مطالعه</h4>
+    {% minimum_study_time as min_time %}
+    {% for post in min_time %}
+        <a href="{{ post.get_absolute_url }}">{{ post.title }} with: {{ post.min }} minute></a>
+    {% endfor %}
+    <br>
+    <br>
+    <h4>کاربران فعال</h4>
+    {% active_users as users %}
+    {% for user in users %}
+        <a>{{ user.username }}</a>
+        <br>
+    {% endfor %}
+    <br>
+    <a href="{% url 'mysite:tickets' %}">ارسال تیکت</a>
+    <br>
+    <a href="{% url 'mysite:create_post' %}">ایجاد پست</a>
+{% endblock %}

@@ -1,0 +1,9 @@
+<form method="get" action="{% url 'mysite:search' %}">
+    <input type="text" name="query" required placeholder="کلمه مورد نظر را وارد کنید">
+    <input type="submit" value="جست و جو">
+</form>
+<a href="{% url 'mysite:profile' %}">پروفایل</a>
+<br>
+<a href="{% url 'mysite:login' %}">ورود</a>
+<br>
+<a href="{% url 'mysite:register' %}">ثبت نام</a>

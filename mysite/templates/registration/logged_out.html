@@ -1,0 +1,9 @@
+{% extends 'parent/base.html' %}
+{% block title %} login {% endblock %}
+{% block content %}
+    <h2>شما خارج شدید...</h2>
+    <form method="post" action="{% url 'mysite:login' %}">
+        {% csrf_token %}
+        <input type="submit" value="ورود مجدد">
+    </form>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'parent/base.html' %}
+{% block title %} post list {% endblock %}
+{% block content %}
+    <h1>post list</h1>
+ <ol style="--length: {{ posts.object_list|length }}" role="list">
+    {% for post in posts %}
+        <li style="--i: {{ forloop.counter }}">
+        <h3>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        </h3>
+        <p>{{ post.description|truncatewords:4 }}</p>
+        {% if post%}
+            <img width="250" height="150" src="{{ post.images.first.file_image.url }}" alt="{{ post.image.first.title }}">
+        {% endif %}
+        <br>
+        </li>
+    {% endfor %}
+</ol>
+    {% if category %}
+        <div>
+            <h1>
+                <a href="{% url 'mysite:post_list' %}"> لیست پست های {{ category }}</a>
+            </h1>
+        </div>
+    {% else %}
+        <div>
+            <h1>
+                <a href="{% url 'mysite:post_list' %}"> لیست تمام پست ها</a>
+            </h1>
+        </div>
+    {% endif %}
+        <div>
+            <a href="{% url 'mysite:post_list_category' "هوش مصنوعی" %}">هوش مصنوعی</a>
+        </div>
+
+        <div>
+            <a href="{% url 'mysite:post_list_category' "برنامه نویسی" %}">برنامه نویسی</a>
+        </div>
+
+        <div>
+            <a href="{% url 'mysite:post_list_category' "تکنولوژی" %}">تکنولوژی</a>
+        </div>
+
+        <div>
+            <a href="{% url 'mysite:post_list_category' "سایر" %}">سایر</a>
+        </div>
+    {% include 'partials/pagination.html' with page_obj=posts %}
+{% endblock %}
+

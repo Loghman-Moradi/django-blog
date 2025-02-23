@@ -1,0 +1,21 @@
+{% extends 'parent/base.html' %}
+{% block title %} ticket {% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <input type="submit" value="ثبت تیکت">
+    </form>
+    {% if form.errors %}
+        لطفا خطاهای زیر را اصلاح کنید!
+        <br>
+        {% for field in form %}
+            {% if field.errors %}
+            	{% for error in field.errors %}
+                    {{ field.label }}: {{ error }}
+            	{% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+

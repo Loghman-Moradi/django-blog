@@ -1,0 +1,9 @@
+{% load jformat %}
+
+<div>
+    <h4>آخرین پست ها</h4>
+    {% for post in l_post %}
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}: {{ post.publish|jformat:"%Y/%M/%d %H:%M:%S" }}</a>
+        <br>
+    {% endfor %}
+</div>

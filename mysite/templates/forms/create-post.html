@@ -1,0 +1,29 @@
+{% extends 'parent/base.html' %}
+{% block title %} create post {% endblock %}
+{% block content %}
+    <h1>ایجاد پست </h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        {% if post %}
+            {% for img in post.images.all %}
+                <img class="circular-image" src="{{ img.file_image.url }}" alt="{{ img.title }}">
+            <a href="{% url 'mysite:delete_image' img.id %}">حذف تصویر</a>
+            {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        <input type="submit" value="ذخیره">
+    </form>
+    {% if form.errors %}
+        لطفا خطاهای زیر را اصلاح کنید.
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    {{ field.label }}: {{ error }}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+     {% endif %}
+{% endblock %}

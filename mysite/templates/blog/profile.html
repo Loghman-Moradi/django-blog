@@ -1,0 +1,37 @@
+{% extends 'parent/base.html' %}
+{% block title %} profile {% endblock %}
+{% block content %}
+    <h2>پروفایل</h2>
+    <table >
+        <tr>
+            <th>ردیف</th>
+            <th>مشاهده</th>
+            <th>ویرایش</th>
+            <th>حذف</th>
+        </tr>
+        <tr>
+        {% if posts %}
+        {% for post in posts %}
+            <td><a>{{ forloop.counter }}</a></td>
+            <td><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
+            <td><a href="{% url 'mysite:edit_post' post.id %}">ویرایش</a></td>
+            <td><a href="{% url 'mysite:delete_post' post.id %}">حذف</a></td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </table>
+    <br>
+    <form method="post" action="{% url 'mysite:logout' %}">
+        {% csrf_token %}
+        <input type="submit" value="خروج">
+    </form>
+    <form action="{% url 'mysite:password_change' %}">
+        {% csrf_token %}
+        <input type="submit" value="تغییر پسورد">
+    </form>
+     <form action="{% url 'mysite:edit_account' %}">
+        {% csrf_token %}
+        <input type="submit" value="ویرایش اطلاعات">
+    </form>
+    {% include 'partials/pagination.html' with page_obj=posts %}
+{% endblock %}

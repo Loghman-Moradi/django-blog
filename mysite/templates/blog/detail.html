@@ -1,0 +1,35 @@
+{% extends 'parent/base.html' %}
+{% load jformat %}
+{% load blog_tags %}
+{% block title %} post detail {% endblock %}
+{% block content %}
+    <h1>post detail</h1>
+    <p>{{ post.description| censor_word }}</p>
+     <div>
+        {% for img in post.images.all %}
+            <img width="200" height="200" src="{{ img.file_image.url }}" alt="{{ img.file_image.url }}">
+        {% endfor %}
+    </div>
+    <hr>
+    <p>{{ post.title }} (by {{post.author}})</p>
+    <p>Latest update: {{ post.updated|jformat:"%Y/%m/%d %H:%M:%S"  }}</p>
+    <p>Creation date: {{ post.publish|jformat:"%Y/%m/%d %H:%M:%S" }}</p>
+    <div>
+        {% with comments.count as cm_count %}
+        {{ cm_count }} comment {{ cm_count|pluralize }}
+        {% endwith %}
+    </div>
+    <br>
+    <div>
+        {% for cm in comments %}
+            {{ cm.fullname }}: {{ cm.budy|censor_word }}
+            <br>
+            <br>
+        {% endfor %}
+    </div>
+    <form method="post" action="{% url 'mysite:post_comment' post.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="ثبت کامنت">
+    </form>
+{% endblock %}

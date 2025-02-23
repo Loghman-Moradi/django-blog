@@ -1,0 +1,41 @@
+{% load static %}
+<head>
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% block head %} {% endblock %}
+</head>
+<body>
+{% include 'partials/header.html' %}
+{% include 'partials/navigation.html' %}
+{% block content %} {% endblock %}
+{% include 'partials/footer.html' %}
+</body>
+
+
+{#{% load static %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="fa">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>{% block title %}{% endblock %}</title>#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'css/flex-slider.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'css/owl.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'css/templatemo-tale-seo-agency.css' %}">#}
+{#</head>#}
+{#<body>#}
+{#    {% include 'partials/header.html' %}#}
+{#    {% include 'partials/navigation.html' %}#}
+{#    <div class="container">#}
+{#        {% block content %}{% endblock %}#}
+{#    </div>#}
+{#    {% include 'partials/footer.html' %}#}
+{#    <script src="{% static 'js/jquery.min.js' %}"></script>#}
+{#    <script src="{% static 'js/flex-slider.js' %}"></script>#}
+{#    <script src="{% static 'js/owl-carousel.js' %}"></script>#}
+{#    <!-- سایر فایل‌های جاوااسکریپت -->#}
+{#</body>#}
+{#</html>#}
+
+
