@@ -53,8 +53,8 @@ The application includes the following URL patterns:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/yourproject.git
-    cd yourproject
+    git clone https://github.com/Loghman-Moradi/django-blog.git
+ 
     ```
 
 2. **Create a virtual environment**:
@@ -92,11 +92,3 @@ The application includes the following URL patterns:
 - **Create and Manage Posts**: Authenticated users can create, edit, and delete posts from their profile page (`/profile/`).
 - **Comment on Posts**: Visitors can leave comments on posts.
 - **Search Posts**: Use the search functionality to find specific posts.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request or report issues.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
